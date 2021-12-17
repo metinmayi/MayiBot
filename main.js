@@ -1,7 +1,8 @@
 //#region Requires & Logins
+const fs = require("fs");
 require("dotenv").config();
 // Discord Section
-const { Client, Intents, Interaction } = require("discord.js");
+const { Client, Collection, Intents } = require("discord.js");
 const client = new Client({
 	intents: [
 		"GUILD_MESSAGES",
@@ -29,3 +30,33 @@ mongoClient.connect((error, success) => {
 });
 
 //#endregion
+
+//#region Setup import of commands from ./commands
+client.commands = new Collection();
+const commandFiles = fs
+	.readdirSync("./commands")
+	.filter((file) => file.endsWith(".js"));
+commandFiles.forEach((file) => {
+	const command = require(`./commands/${file}`);
+	client.commands.set(command.data.name, command);
+});
+//#endregion
+
+//Handles all of the slash commands for the discord bot!
+client.on("interactionCreate", async (interaction) => {
+	if (!interaction.isCommand()) return;
+
+	const command = client.commands.get(interaction.commandName);
+
+	if (!command) return;
+
+	try {
+		await command.execute(interaction);
+	} catch (error) {
+		console.error(error);
+		await interaction.reply({
+			content: `There was an error executing the command`,
+			ephemeral: true,
+		});
+	}
+});
