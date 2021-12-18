@@ -7,7 +7,9 @@ const {
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("joke")
-		.setDescription("Fetches a joke for you. I hope you like it!"),
+		.setDescription(
+			"I'll crack a joke for you! I've heard I'm not always appropriate."
+		),
 	async execute(interaction) {
 		let api = await fetch(
 			"https://random-stuff-api.p.rapidapi.com/joke?type=any",

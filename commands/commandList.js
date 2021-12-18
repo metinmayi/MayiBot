@@ -26,7 +26,11 @@ const embed = {
 	fields: [
 		{
 			name: "/joke",
-			value: "Fetches a random joke from an API.",
+			value: "Shows you that (ro)bots can have humour aswell.",
+		},
+		{
+			name: "/wisdom",
+			value: "Grants you Wiseguy's almighty wisdom(Not always very almighty).",
 		},
 	],
 };
