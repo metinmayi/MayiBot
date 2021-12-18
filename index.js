@@ -56,7 +56,6 @@ client.on("interactionCreate", async (interaction) => {
 		console.error(error);
 		await interaction.reply({
 			content: `There was an error executing the command`,
-			ephemeral: true,
 		});
 	}
 });
