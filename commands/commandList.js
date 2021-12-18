@@ -8,8 +8,6 @@ module.exports = {
 		.setName("commandlist")
 		.setDescription("Gives you a list of my available commands!"),
 	async execute(interaction) {
-		await interaction.reply(
-			`Hello ${interaction.user}. Here is a list of my available commands!`
-		);
+		await interaction.reply(exampleEmbed);
 	},
 };

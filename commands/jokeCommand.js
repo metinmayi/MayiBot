@@ -4,33 +4,6 @@ const {
 	SlashCommandBuilder,
 } = require("@discordjs/builders");
 
-// module.exports = {
-// 	data: new SlashCommandBuilder()
-// 		.setName("joke")
-// 		.setDescription("Fetches a joke for you. I hope you like it!"),
-// 	async execute(interaction) {
-// 		fetch("https://random-stuff-api.p.rapidapi.com/joke?type=any", {
-// 			method: "GET",
-// 			headers: {
-// 				authorization: "ER0hgkKs0lAG",
-// 				"x-rapidapi-host": "random-stuff-api.p.rapidapi.com",
-// 				"x-rapidapi-key": "66ad21f061mshfffe6f0e96b0587p12423ejsn25afa101cc98",
-// 			},
-// 		})
-// 			.then((response) => {
-// 				return response.json();
-// 			})
-// 			.then((data) => {
-// 				if (data.type === "twopart") {
-// 					console.log(data);
-// 					interaction.reply(`${data.setup} \n ${data.delivery}`);
-// 				} else {
-// 					interaction.reply(data);
-// 				}
-// 			});
-// 	},
-// };
-
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("joke")
