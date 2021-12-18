@@ -36,6 +36,11 @@ const embed = {
 			name: "/deletemessages",
 			value: "Deletes previous messages. Current cap is 50 at a time.",
 		},
+		{
+			name: "/newname",
+			value:
+				"Gives you a brand new name. One that I think suits you a bit betterö",
+		},
 	],
 };
 
