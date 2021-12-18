@@ -32,6 +32,10 @@ const embed = {
 			name: "/wisdom",
 			value: "Grants you Wiseguy's almighty wisdom(Not always very almighty).",
 		},
+		{
+			name: "/deletemessages",
+			value: "Deletes previous messages. Current cap is 50 at a time.",
+		},
 	],
 };
 
