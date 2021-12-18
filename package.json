@@ -5,7 +5,7 @@
 		"node": "17.x"
 	},
 	"description": "",
-	"main": "main.js",
+	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
