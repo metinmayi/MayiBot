@@ -5,11 +5,13 @@ async function DBcreateUser(mongoClient, member) {
 		.collection("users")
 		.findOne({ tag: member.user.tag });
 	//If there is an existing user, do nothing, else create a new user.
-	if (alreadyExistingUser) console.log(alreadyExistingUser);
+	if (alreadyExistingUser) return;
 	else {
 		const newUser = {
 			name: `Wiseguy ${member.user.username}`,
 			level: 1,
+			experience: 0,
+			levelupExperience: 1000,
 			rank: "Novice",
 			tag: member.user.tag,
 		};

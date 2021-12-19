@@ -38,10 +38,9 @@ async function welcomeMessage(mongoClient, member) {
 		.collection("users")
 		.findOne({ tag: member.user.tag });
 
-	console.log(userListing);
 	//Create an embed for the user. Collapse it if you're not changing anything
 	const embed = {
-		title: "User profile",
+		title: member.user.username,
 		description: "Information about your profile.",
 		url: "",
 		color: 11137603,
@@ -53,17 +52,17 @@ async function welcomeMessage(mongoClient, member) {
 			url: "https://gcdn.pbrd.co/images/u1P2JNb317nx.jpg?o=1",
 		},
 		author: {
-			name: member.user.username,
-			icon_url: member.user.defaultAvatarURL,
+			name: "User profile",
+			icon_url: member.user.displayAvatarURL(),
 		},
 		fields: [
 			{
 				name: `Level: ${userListing.level}`,
-				value: "Gain levels through interacting with with the bot.",
+				value: "Gain levels through interacting with the bot.",
 			},
 			{
-				name: "ID",
-				value: `${userListing._id}`,
+				name: "Experience",
+				value: `${userListing.experience} / ${userListing.levelupExperience}`,
 			},
 			{
 				name: "Rank",
@@ -75,6 +74,9 @@ async function welcomeMessage(mongoClient, member) {
 		`Welcome to the server ${member.user.username}! \n I am Wiseguy, a bot built with the NodeJS library: discord.js.\n My creator also uses MongoDB to make me store data, such as your newly created profile:`
 	);
 	member.send({ embeds: [embed] });
+	member.send(
+		'You can find a list of all my available commands by navigating to the discord server and typing "/commandlist"'
+	);
 }
 
 module.exports = welcomeMessage;
