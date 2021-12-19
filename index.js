@@ -1,6 +1,8 @@
 //#region Requires & Logins
 const fs = require("fs");
 require("dotenv").config();
+const welcomeMessage = require("./modules/welcomeMessage");
+const DBcreateUser = require("./modules/DBCreateUser");
 // Discord Section
 const { Client, Collection, Intents } = require("discord.js");
 const client = new Client({
@@ -58,4 +60,10 @@ client.on("interactionCreate", async (interaction) => {
 			content: `There was an error executing the command`,
 		});
 	}
+});
+
+//Regsiters new users
+client.on("guildMemberAdd", async (member) => {
+	await DBcreateUser(mongoClient, member); // Stuck at pending
+	welcomeMessage(mongoClient, member); // Shouldnt run?
 });
