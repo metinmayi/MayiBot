@@ -3,6 +3,7 @@ const fs = require("fs");
 require("dotenv").config();
 const welcomeMessage = require("./modules/welcomeMessage");
 const DBcreateUser = require("./modules/DBCreateUser");
+const levelup = require("./modules/DBLevelup");
 // Discord Section
 const { Client, Collection, Intents } = require("discord.js");
 const client = new Client({
@@ -44,7 +45,7 @@ commandFiles.forEach((file) => {
 });
 //#endregion
 
-//Handles all of the slash commands for the discord bot!
+//Handles all of the slash commands for the discord bot, including the experience/levelup.
 client.on("interactionCreate", async (interaction) => {
 	if (!interaction.isCommand()) return;
 
@@ -54,6 +55,7 @@ client.on("interactionCreate", async (interaction) => {
 
 	try {
 		await command.execute(interaction);
+		levelup(mongoClient, interaction);
 	} catch (error) {
 		console.error(error);
 		await interaction.reply({

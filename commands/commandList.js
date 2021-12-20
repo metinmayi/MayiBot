@@ -41,6 +41,10 @@ const embed = {
 			value:
 				"Gives you a brand new name. One that I think suits you a bit betterö",
 		},
+		{
+			name: "/myprofile",
+			value: "Displays your profile.",
+		},
 	],
 };
 
