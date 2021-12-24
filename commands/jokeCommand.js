@@ -11,18 +11,12 @@ module.exports = {
 			"I'll crack a joke for you! I've heard I'm not always appropriate."
 		),
 	async execute(interaction) {
-		let api = await fetch(
-			"https://random-stuff-api.p.rapidapi.com/joke?type=any",
-			{
-				method: "GET",
-				headers: {
-					authorization: "ER0hgkKs0lAG",
-					"x-rapidapi-host": "random-stuff-api.p.rapidapi.com",
-					"x-rapidapi-key":
-						"66ad21f061mshfffe6f0e96b0587p12423ejsn25afa101cc98",
-				},
-			}
-		);
+		let api = await fetch("https://api.pgamerx.com/v5/joke?type=any", {
+			method: "GET",
+			headers: {
+				authorization: "N4grsOtNNAeo",
+			},
+		});
 		let joke = await api.json();
 
 		if (joke.type === "twopart") {
@@ -30,8 +24,10 @@ module.exports = {
 			setTimeout(() => {
 				interaction.editReply(`${joke.setup} --- ${joke.delivery}`);
 			}, 2000);
-		} else {
+		} else if (joke.type === "joke") {
 			interaction.reply(joke.joke);
+		} else {
+			interaction.reply("There seems to be an issue with the API");
 		}
 	},
 };
